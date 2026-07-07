@@ -1,0 +1,1057 @@
+/* ==========================================================================
+   bar for Varonis — visual language rebuilt from varonis.com (2026-07-07):
+   dark cosmic ground (#010203), condensed uppercase display (roman + italic),
+   blue #0077FF primary, lime #8BE000 + teal #2FE6A6 accents, blueprint panels
+   with corner registration marks, alternating dark / white bands.
+   Fonts: Oswald (condensed display, stand-in for Graphik Cond) + Inter (body,
+   stand-in for Graphik). All scoped to .vr-root.
+   ========================================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --font-body: "Inter Variable", system-ui, -apple-system, sans-serif;
+  --font-display: "Oswald Variable", "Inter Variable", sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #010203;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.vr-root {
+  /* palette */
+  --bg: #010203;
+  --panel: #0a0e12;
+  --panel-2: #0d141a;
+  --line: rgba(126, 156, 176, 0.16);
+  --white: #ffffff;
+  --blue: #0077ff;
+  --blue-hi: #2f93ff;
+  --green: #8be000;
+  --teal: #2fe6a6;
+  --mute: #90a4b1;
+  --mute-2: #63737f;
+  --ink: #0a1119;
+  --ink-mute: #55636d;
+  --light: #ffffff;
+  --light-2: #f4f7f9;
+
+  --maxw: 1180px;
+  --pad: clamp(1.15rem, 5vw, 3rem);
+  --pill: 26px;
+  --card: 16px;
+
+  color: var(--white);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+.vr-root ::selection {
+  background: var(--green);
+  color: #05130a;
+}
+
+.vr-wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--pad);
+  position: relative;
+  z-index: 2;
+}
+
+/* keep anchored section headings clear of the fixed nav */
+#approach,
+#work,
+#track {
+  scroll-margin-top: 82px;
+}
+
+/* ------- display type helpers ------- */
+.vr-title-roman,
+.vr-title-italic {
+  display: block;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 0.98;
+}
+.vr-title-italic {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--white);
+}
+
+/* ==========================================================================
+   NAV
+   ========================================================================== */
+.vr-nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  transition: background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
+  border-bottom: 1px solid transparent;
+}
+.vr-nav.is-solid {
+  background: rgba(4, 8, 11, 0.82);
+  backdrop-filter: blur(14px);
+  border-bottom-color: var(--line);
+}
+.vr-nav-inner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 14px var(--pad);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.vr-nav-brand {
+  text-decoration: none;
+  color: var(--white);
+}
+.vr-nav-links {
+  margin-left: auto;
+  display: flex;
+  gap: 28px;
+}
+.vr-nav-links a {
+  color: var(--mute);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition: color 0.18s ease;
+}
+.vr-nav-links a:hover {
+  color: var(--white);
+}
+.vr-nav-cta {
+  margin-left: 4px;
+}
+
+/* logo */
+.vr-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.vr-logo-mark {
+  color: var(--green);
+  flex: none;
+}
+.vr-logo-text {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  font-size: 1.02rem;
+  color: var(--white);
+}
+.vr-logo-for {
+  color: var(--mute-2);
+  font-weight: 400;
+  margin: 0 1px;
+}
+
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+.vr-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 46px;
+  padding: 0 26px;
+  border-radius: var(--pill);
+  font-family: var(--font-body);
+  font-size: 0.94rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.16s ease, background 0.18s ease, border-color 0.18s ease,
+    box-shadow 0.18s ease, color 0.18s ease;
+}
+.vr-btn:hover {
+  transform: translateY(-2px);
+}
+.vr-btn-blue {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #fff;
+  box-shadow: 0 8px 26px -10px rgba(0, 119, 255, 0.8);
+}
+.vr-btn-blue:hover {
+  background: var(--blue-hi);
+  border-color: var(--blue-hi);
+}
+.vr-btn-green {
+  background: var(--green);
+  border-color: var(--green);
+  color: #08160a;
+  height: 40px;
+  box-shadow: 0 8px 24px -12px rgba(139, 224, 0, 0.8);
+}
+.vr-btn-green:hover {
+  box-shadow: 0 12px 30px -12px rgba(139, 224, 0, 0.9);
+}
+.vr-btn-ghost {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.28);
+  color: var(--white);
+}
+.vr-btn-ghost:hover {
+  border-color: var(--white);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* ==========================================================================
+   STARFIELD + GLOWS
+   ========================================================================== */
+.vr-stars {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1.4px 1.4px at 12% 18%, rgba(255, 255, 255, 0.9), transparent),
+    radial-gradient(1px 1px at 28% 62%, rgba(200, 224, 255, 0.7), transparent),
+    radial-gradient(1.2px 1.2px at 47% 25%, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(1px 1px at 63% 74%, rgba(200, 224, 255, 0.6), transparent),
+    radial-gradient(1.5px 1.5px at 78% 32%, rgba(255, 255, 255, 0.85), transparent),
+    radial-gradient(1px 1px at 88% 68%, rgba(200, 224, 255, 0.55), transparent),
+    radial-gradient(1.1px 1.1px at 8% 84%, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(1px 1px at 38% 92%, rgba(200, 224, 255, 0.5), transparent),
+    radial-gradient(1.3px 1.3px at 70% 10%, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(1px 1px at 95% 46%, rgba(200, 224, 255, 0.5), transparent);
+  background-repeat: no-repeat;
+}
+.vr-stars-dim {
+  opacity: 0.5;
+}
+.vr-hero-glow,
+.vr-close-glow {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 50%;
+  filter: blur(20px);
+}
+.vr-hero-glow {
+  width: 900px;
+  height: 900px;
+  right: -260px;
+  top: -120px;
+  background: radial-gradient(
+    circle,
+    rgba(47, 230, 166, 0.2) 0%,
+    rgba(18, 130, 160, 0.12) 34%,
+    rgba(2, 7, 10, 0) 66%
+  );
+}
+.vr-close-glow {
+  width: 760px;
+  height: 760px;
+  left: 50%;
+  bottom: -420px;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    circle,
+    rgba(47, 230, 166, 0.22) 0%,
+    rgba(0, 119, 255, 0.12) 40%,
+    rgba(2, 7, 10, 0) 68%
+  );
+}
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+.vr-hero {
+  position: relative;
+  background: radial-gradient(120% 100% at 80% 0%, #071019 0%, #010203 58%);
+  padding: clamp(120px, 16vh, 190px) 0 clamp(70px, 9vh, 120px);
+  overflow: hidden;
+}
+.vr-hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--pad);
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(24px, 4vw, 56px);
+  align-items: center;
+}
+.vr-eyebrow {
+  display: inline-block;
+  margin: 0 0 22px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--teal);
+  padding: 7px 14px;
+  border: 1px solid rgba(47, 230, 166, 0.3);
+  border-radius: 999px;
+  background: rgba(47, 230, 166, 0.06);
+}
+.vr-hero-title {
+  margin: 0 0 22px;
+  font-size: clamp(2.6rem, 6.4vw, 5rem);
+}
+.vr-title-roman {
+  color: var(--white);
+}
+.vr-hero-title .vr-title-italic {
+  color: var(--green);
+}
+.vr-hero-sub {
+  margin: 0 0 32px;
+  max-width: 34em;
+  color: var(--mute);
+  font-size: clamp(1rem, 1.4vw, 1.14rem);
+  line-height: 1.62;
+}
+.vr-hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.vr-hero-art {
+  position: relative;
+}
+.vr-orbit {
+  width: 100%;
+  height: auto;
+  max-width: 540px;
+  margin-inline: auto;
+  display: block;
+  overflow: visible;
+}
+
+/* orbit motion */
+.vr-orbit-ring {
+  transform-box: view-box;
+  transform-origin: 260px 260px;
+  animation: vr-spin 70s linear infinite;
+}
+.vr-orbit-nebula {
+  animation: vr-breathe 7s ease-in-out infinite;
+  transform-box: view-box;
+  transform-origin: 260px 260px;
+}
+.vr-core-glow {
+  filter: drop-shadow(0 0 22px rgba(47, 230, 166, 0.35));
+  animation: vr-corepulse 6s ease-in-out infinite;
+}
+.vr-node {
+  animation: vr-float 5.5s ease-in-out infinite;
+}
+.vr-core-num {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 30px;
+  fill: #fff;
+  letter-spacing: 0.02em;
+}
+.vr-core-cap {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 11px;
+  fill: var(--teal);
+  letter-spacing: 0.22em;
+}
+.vr-node-label {
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  font-weight: 600;
+  fill: #dbe7ee;
+}
+
+@keyframes vr-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes vr-float {
+  0%, 100% {
+    transform: translateY(-4px);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+@keyframes vr-breathe {
+  0%, 100% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+@keyframes vr-corepulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 18px rgba(47, 230, 166, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 34px rgba(47, 230, 166, 0.55));
+  }
+}
+
+/* ==========================================================================
+   BANDS (shared)
+   ========================================================================== */
+.vr-band {
+  position: relative;
+  padding: clamp(64px, 9vw, 116px) 0;
+  overflow: hidden;
+}
+.vr-band-dark {
+  background: linear-gradient(180deg, #010203 0%, #05090d 50%, #010203 100%);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.vr-band-light {
+  background: var(--light);
+  color: var(--ink);
+}
+.vr-band-track {
+  padding-top: 0;
+}
+
+.vr-band-head {
+  max-width: 720px;
+  margin-bottom: clamp(34px, 5vw, 56px);
+}
+.vr-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 16px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--teal);
+}
+.vr-kicker-dark {
+  color: var(--blue);
+}
+.vr-kicker-mark {
+  width: 22px;
+  height: 2px;
+  background: currentColor;
+  display: inline-block;
+}
+.vr-h2 {
+  margin: 0 0 18px;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  line-height: 1.02;
+  font-size: clamp(1.8rem, 3.6vw, 2.9rem);
+  color: var(--white);
+}
+.vr-h2-dark {
+  color: var(--ink);
+}
+.vr-lead {
+  margin: 0;
+  color: var(--mute);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  max-width: 46em;
+}
+.vr-lead-dark {
+  color: var(--ink-mute);
+}
+
+/* ==========================================================================
+   BLUEPRINT PANEL + AI ADOPTION HUB
+   ========================================================================== */
+.vr-blueprint {
+  position: relative;
+  margin: 0 0 clamp(40px, 5vw, 60px);
+  padding: clamp(20px, 3vw, 40px);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background:
+    linear-gradient(180deg, rgba(10, 16, 22, 0.9), rgba(4, 8, 11, 0.9)),
+    repeating-linear-gradient(0deg, transparent 0 31px, rgba(126, 156, 176, 0.07) 31px 32px),
+    repeating-linear-gradient(90deg, transparent 0 31px, rgba(126, 156, 176, 0.07) 31px 32px);
+  overflow: hidden;
+}
+.vr-blueprint::after {
+  content: "";
+  position: absolute;
+  left: -10%;
+  bottom: -40%;
+  width: 60%;
+  height: 90%;
+  background: radial-gradient(circle, rgba(139, 224, 0, 0.14), transparent 68%);
+  pointer-events: none;
+}
+.vr-crop {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--teal);
+  opacity: 0.7;
+  z-index: 3;
+}
+.vr-crop-tl { top: 10px; left: 10px; border-right: 0; border-bottom: 0; }
+.vr-crop-tr { top: 10px; right: 10px; border-left: 0; border-bottom: 0; }
+.vr-crop-bl { bottom: 10px; left: 10px; border-right: 0; border-top: 0; }
+.vr-crop-br { bottom: 10px; right: 10px; border-left: 0; border-top: 0; }
+
+.vr-hub {
+  position: relative;
+  z-index: 2;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(3, 7, 10, 0.72);
+  overflow: hidden;
+}
+.vr-hub-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+}
+.vr-hub-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #2a3742;
+}
+.vr-hub-dot:nth-child(1) { background: #3a4a55; }
+.vr-hub-title {
+  margin-left: 8px;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: var(--mute-2);
+  letter-spacing: 0.02em;
+}
+.vr-hub-live {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+.vr-hub-live i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 10px var(--green);
+  animation: vr-blink 2.4s ease-in-out infinite;
+}
+@keyframes vr-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+.vr-hub-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+.vr-hub-scores {
+  padding: 22px;
+  border-right: 1px solid var(--line);
+}
+.vr-hub-catalog {
+  padding: 22px;
+}
+.vr-hub-h {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #cfe0ea;
+  margin-bottom: 16px;
+}
+.vr-hub-h-sm {
+  font-size: 0.8rem;
+  color: var(--mute);
+  margin-bottom: 12px;
+}
+
+.vr-score {
+  margin-bottom: 15px;
+}
+.vr-score-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+}
+.vr-score-label {
+  font-size: 0.85rem;
+  color: var(--mute);
+}
+.vr-score-value {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--green);
+}
+.vr-score-track {
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(126, 156, 176, 0.14);
+  overflow: hidden;
+}
+.vr-score-fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--teal), var(--green));
+  transform-origin: left;
+  animation: vr-grow 1.4s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.vr-score-note {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.72rem;
+  color: var(--mute-2);
+}
+@keyframes vr-grow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.vr-catalog {
+  list-style: none;
+  margin: 0 0 20px;
+  padding: 0;
+}
+.vr-catalog-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.86rem;
+}
+.vr-catalog-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex: none;
+}
+.vr-catalog-name {
+  font-family: "SFMono-Regular", ui-monospace, Menlo, monospace;
+  color: #e6eef3;
+  font-size: 0.82rem;
+}
+.vr-catalog-kind {
+  color: var(--mute-2);
+  font-size: 0.78rem;
+}
+.vr-catalog-status {
+  margin-left: auto;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--teal);
+  border: 1px solid rgba(47, 230, 166, 0.3);
+  border-radius: 999px;
+  padding: 3px 9px;
+}
+.vr-compare-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 9px;
+}
+.vr-compare-tag {
+  width: 58px;
+  font-size: 0.76rem;
+  color: var(--green);
+  font-weight: 600;
+}
+.vr-compare-tag-dim {
+  color: var(--mute-2);
+  font-weight: 500;
+}
+.vr-compare-track {
+  flex: 1;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(126, 156, 176, 0.12);
+  overflow: hidden;
+}
+.vr-compare-fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  transform-origin: left;
+  animation: vr-grow 1.4s 0.3s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.vr-compare-with {
+  width: 92%;
+  background: linear-gradient(90deg, var(--blue), var(--teal));
+}
+.vr-compare-without {
+  width: 38%;
+  background: rgba(126, 156, 176, 0.4);
+}
+.vr-blueprint-cap {
+  position: relative;
+  z-index: 2;
+  margin: 18px 2px 0;
+  font-size: 0.76rem;
+  color: var(--mute-2);
+  line-height: 1.5;
+}
+
+/* ------- focus cards ------- */
+.vr-focus {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.vr-focus-card {
+  position: relative;
+  padding: 26px 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--card);
+  background: linear-gradient(180deg, rgba(10, 16, 22, 0.7), rgba(4, 8, 11, 0.5));
+  transition: transform 0.18s ease, border-color 0.18s ease;
+}
+.vr-focus-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 22px;
+  bottom: 22px;
+  width: 3px;
+  border-radius: 3px;
+  background: var(--green);
+  opacity: 0.85;
+}
+.vr-focus-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(47, 230, 166, 0.4);
+}
+.vr-focus-k {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  color: var(--teal);
+  letter-spacing: 0.1em;
+}
+.vr-focus-title {
+  margin: 10px 0 10px;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  font-size: 1.16rem;
+  line-height: 1.1;
+  color: var(--white);
+}
+.vr-focus-body {
+  margin: 0;
+  color: var(--mute);
+  font-size: 0.94rem;
+  line-height: 1.58;
+}
+
+/* ==========================================================================
+   WORK GRID
+   ========================================================================== */
+.vr-band-head-light {
+  max-width: 720px;
+}
+.vr-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.vr-tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 22px 22px;
+  border: 1px solid #e6eaee;
+  border-radius: var(--card);
+  background: var(--light-2);
+  text-decoration: none;
+  color: var(--ink);
+  overflow: hidden;
+  transition: transform 0.18s ease, box-shadow 0.2s ease, border-color 0.18s ease;
+}
+.vr-tile::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--tile-accent, var(--blue));
+}
+.vr-tile-wide {
+  grid-column: span 2;
+}
+.vr-accent-blue { --tile-accent: #0077ff; }
+.vr-accent-green { --tile-accent: #6fb400; }
+.vr-accent-teal { --tile-accent: #12b58a; }
+.vr-accent-slate { --tile-accent: #45586a; }
+.vr-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -22px rgba(10, 20, 30, 0.35);
+  border-color: var(--tile-accent, var(--blue));
+}
+.vr-tile-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--tile-accent, var(--blue));
+  margin-bottom: 12px;
+}
+.vr-tile-name {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.vr-tile-blurb {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--ink-mute);
+  flex: 1;
+}
+.vr-tile-go {
+  margin-top: 16px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--tile-accent, var(--blue));
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+.vr-tile:hover .vr-tile-go {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ==========================================================================
+   TRACK RECORD
+   ========================================================================== */
+.vr-track {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: clamp(30px, 5vw, 64px);
+  padding-top: clamp(50px, 6vw, 80px);
+  border-top: 1px solid #e6eaee;
+}
+.vr-h3-dark {
+  margin: 0 0 22px;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  font-size: 1.1rem;
+  color: var(--ink);
+}
+.vr-track-row {
+  padding: 14px 0;
+  border-bottom: 1px solid #edf0f2;
+}
+.vr-track-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+.vr-track-role {
+  display: block;
+  font-weight: 700;
+  font-size: 0.98rem;
+  color: var(--ink);
+}
+.vr-track-when {
+  font-size: 0.78rem;
+  color: var(--ink-mute);
+  white-space: nowrap;
+}
+.vr-track-org {
+  display: block;
+  font-size: 0.86rem;
+  color: var(--blue);
+  font-weight: 600;
+  margin-top: 2px;
+}
+.vr-track-note {
+  margin: 8px 0 0;
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: var(--ink-mute);
+}
+.vr-track-stack {
+  margin-top: 20px;
+}
+.vr-track-stack-h {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.8rem;
+  color: var(--ink-mute);
+}
+.vr-track-stack p {
+  margin: 8px 0 0;
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+/* ==========================================================================
+   CLOSE
+   ========================================================================== */
+.vr-close {
+  position: relative;
+  background: radial-gradient(110% 100% at 50% 120%, #05131a 0%, #010203 60%);
+  padding: clamp(80px, 12vw, 140px) 0 0;
+  overflow: hidden;
+  text-align: center;
+}
+.vr-close-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.vr-close-title {
+  margin: 0 0 18px;
+  font-size: clamp(2rem, 4.6vw, 3.4rem);
+}
+.vr-close-title .vr-title-roman {
+  color: var(--white);
+}
+.vr-close-title .vr-title-italic {
+  color: var(--teal);
+}
+.vr-close-sub {
+  margin: 0 0 30px;
+  max-width: 34em;
+  color: var(--mute);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+.vr-footer {
+  position: relative;
+  z-index: 2;
+  margin-top: clamp(70px, 10vw, 120px);
+  border-top: 1px solid var(--line);
+  padding: 26px var(--pad);
+  max-width: var(--maxw);
+  margin-inline: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.84rem;
+  color: var(--mute);
+}
+.vr-footer-note {
+  color: var(--mute-2);
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 900px) {
+  .vr-hero-inner {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+  .vr-hero-art {
+    order: -1;
+    max-width: 380px;
+  }
+  .vr-hub-body {
+    grid-template-columns: 1fr;
+  }
+  .vr-hub-scores {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .vr-focus {
+    grid-template-columns: 1fr;
+  }
+  .vr-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .vr-tile-wide {
+    grid-column: span 2;
+  }
+  .vr-track {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 620px) {
+  .vr-nav-links {
+    display: none;
+  }
+  .vr-grid {
+    grid-template-columns: 1fr;
+  }
+  .vr-tile-wide {
+    grid-column: span 1;
+  }
+  .vr-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .vr-orbit-ring,
+  .vr-orbit-nebula,
+  .vr-core-glow,
+  .vr-node,
+  .vr-hub-live i,
+  .vr-score-fill,
+  .vr-compare-fill {
+    animation: none !important;
+  }
+  .vr-btn:hover,
+  .vr-tile:hover,
+  .vr-focus-card:hover {
+    transform: none;
+  }
+}
