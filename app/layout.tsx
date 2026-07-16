@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "@fontsource-variable/inter";
 import "@fontsource-variable/oswald";
 import "./globals.css";
@@ -32,7 +33,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" dir="ltr">
-      <body>{children}</body>
+      <body>
+    <Script
+      src="https://bar-for-companies.vercel.app/track.js"
+      data-bar-for-id="varonis"
+      strategy="afterInteractive"
+    />
+{children}</body>
     </html>
   );
 }
